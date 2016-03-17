@@ -25,6 +25,9 @@
 		B2D896781C931E6A005EF0A4 /* NetworkingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D896771C931E6A005EF0A4 /* NetworkingManager.swift */; };
 		B2D8967C1C936A8A005EF0A4 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D8967B1C936A8A005EF0A4 /* AuthService.swift */; };
 		B2D8967F1C937356005EF0A4 /* UdacityAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D8967E1C937356005EF0A4 /* UdacityAuthService.swift */; };
+		B2D9D66E1C9B2BD60015617D /* HomeTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D9D66D1C9B2BD60015617D /* HomeTabBarViewController.swift */; };
+		B2D9D6711C9B42DF0015617D /* SpinnerIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D9D6701C9B42DF0015617D /* SpinnerIndicator.swift */; };
+		B2D9D6731C9B472E0015617D /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D9D6721C9B472E0015617D /* BaseViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +51,9 @@
 		B2D896771C931E6A005EF0A4 /* NetworkingManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkingManager.swift; sourceTree = "<group>"; };
 		B2D8967B1C936A8A005EF0A4 /* AuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		B2D8967E1C937356005EF0A4 /* UdacityAuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityAuthService.swift; sourceTree = "<group>"; };
+		B2D9D66D1C9B2BD60015617D /* HomeTabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTabBarViewController.swift; sourceTree = "<group>"; };
+		B2D9D6701C9B42DF0015617D /* SpinnerIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpinnerIndicator.swift; sourceTree = "<group>"; };
+		B2D9D6721C9B472E0015617D /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +72,8 @@
 			children = (
 				B24FFEC91C922EE400D8EEF3 /* ViewController.swift */,
 				B22FC93A1C99B3BC0024BBEE /* LocationsMapViewController.swift */,
+				B2D9D66D1C9B2BD60015617D /* HomeTabBarViewController.swift */,
+				B2D9D6721C9B472E0015617D /* BaseViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -89,6 +97,7 @@
 		B24FFEC61C922EE400D8EEF3 /* OnTheMap */ = {
 			isa = PBXGroup;
 			children = (
+				B2D9D66F1C9B414D0015617D /* Utils */,
 				B22FC93C1C99C40C0024BBEE /* GCDBlackBox.swift */,
 				B22FC9391C99B3940024BBEE /* ViewControllers */,
 				B2D896791C936A31005EF0A4 /* Services */,
@@ -157,6 +166,14 @@
 				B2D176011C98546000F62B26 /* Udacity */,
 			);
 			name = Implementations;
+			sourceTree = "<group>";
+		};
+		B2D9D66F1C9B414D0015617D /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				B2D9D6701C9B42DF0015617D /* SpinnerIndicator.swift */,
+			);
+			name = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -234,12 +251,15 @@
 				B2D176001C976AEA00F62B26 /* StudentService.swift in Sources */,
 				B2D175FA1C97596B00F62B26 /* AuthManager.swift in Sources */,
 				B2D175FC1C9763DB00F62B26 /* UserService.swift in Sources */,
+				B2D9D6711C9B42DF0015617D /* SpinnerIndicator.swift in Sources */,
+				B2D9D6731C9B472E0015617D /* BaseViewController.swift in Sources */,
 				B22FC93D1C99C40C0024BBEE /* GCDBlackBox.swift in Sources */,
 				B2D175FE1C9767F900F62B26 /* StudentLocation.swift in Sources */,
 				B22FC9381C98B0010024BBEE /* StudentManager.swift in Sources */,
 				B2D8967F1C937356005EF0A4 /* UdacityAuthService.swift in Sources */,
 				B2D896781C931E6A005EF0A4 /* NetworkingManager.swift in Sources */,
 				B24FFECA1C922EE400D8EEF3 /* ViewController.swift in Sources */,
+				B2D9D66E1C9B2BD60015617D /* HomeTabBarViewController.swift in Sources */,
 				B24FFEC81C922EE400D8EEF3 /* AppDelegate.swift in Sources */,
 				B22FC93B1C99B3BC0024BBEE /* LocationsMapViewController.swift in Sources */,
 				B2D8967C1C936A8A005EF0A4 /* AuthService.swift in Sources */,
