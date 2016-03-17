@@ -13,7 +13,6 @@ class BaseViewController: UIViewController {
     
     var activityIndicator: SpinnerIndicator!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.activityIndicator = SpinnerIndicator(parentView: self.view)        
