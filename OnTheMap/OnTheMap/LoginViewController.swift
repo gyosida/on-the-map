@@ -13,7 +13,7 @@ class LoginViewController: BaseViewController {
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     private let authManager = AuthManager(authService: UdacityAuthService())
-    let homeSegueIdentifier = "homeSegue"
+    private let homeSegueIdentifier = "homeSegue"
 
     @IBAction func loginPressed(sender: UIButton) {
         let username = usernameTextField.text!

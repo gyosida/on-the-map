@@ -83,6 +83,42 @@
 			name = ViewControllers;
 			sourceTree = "<group>";
 		};
+		B23DD7F61C9C406E00A41B90 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				B22FC93C1C99C40C0024BBEE /* GCDBlackBox.swift */,
+				B2D175F51C97500D00F62B26 /* Constants.swift */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		B23DD7F71C9C407F00A41B90 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				B2D176011C98546000F62B26 /* Udacity */,
+				B2D176021C98546900F62B26 /* Parse */,
+			);
+			name = Network;
+			sourceTree = "<group>";
+		};
+		B23DD7F81C9C40A500A41B90 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				B2D8967B1C936A8A005EF0A4 /* AuthService.swift */,
+				B2D175FB1C9763DB00F62B26 /* UserService.swift */,
+				B2D175FF1C976AEA00F62B26 /* StudentService.swift */,
+			);
+			name = Protocols;
+			sourceTree = "<group>";
+		};
+		B23DD7F91C9C42A500A41B90 /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				B24FFEC71C922EE400D8EEF3 /* AppDelegate.swift */,
+			);
+			name = AppDelegate;
+			sourceTree = "<group>";
+		};
 		B24FFEBB1C922EE400D8EEF3 = {
 			isa = PBXGroup;
 			children = (
@@ -102,13 +138,13 @@
 		B24FFEC61C922EE400D8EEF3 /* OnTheMap */ = {
 			isa = PBXGroup;
 			children = (
+				B23DD7F91C9C42A500A41B90 /* AppDelegate */,
+				B23DD7F61C9C406E00A41B90 /* Resources */,
 				B2D9D6741C9B5D3F0015617D /* Views */,
-				B22FC93C1C99C40C0024BBEE /* GCDBlackBox.swift */,
 				B22FC9391C99B3940024BBEE /* ViewControllers */,
 				B2D896791C936A31005EF0A4 /* Services */,
 				B2D896761C931A09005EF0A4 /* Model */,
 				B2D896751C931961005EF0A4 /* Managers */,
-				B24FFEC71C922EE400D8EEF3 /* AppDelegate.swift */,
 				B24FFECB1C922EE400D8EEF3 /* Main.storyboard */,
 				B24FFECE1C922EE400D8EEF3 /* Assets.xcassets */,
 				B24FFED01C922EE400D8EEF3 /* LaunchScreen.storyboard */,
@@ -155,22 +191,10 @@
 		B2D896791C936A31005EF0A4 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				B2D8967D1C936E4D005EF0A4 /* Implementations */,
-				B2D8967B1C936A8A005EF0A4 /* AuthService.swift */,
-				B2D175F51C97500D00F62B26 /* Constants.swift */,
-				B2D175FB1C9763DB00F62B26 /* UserService.swift */,
-				B2D175FF1C976AEA00F62B26 /* StudentService.swift */,
+				B23DD7F81C9C40A500A41B90 /* Protocols */,
+				B23DD7F71C9C407F00A41B90 /* Network */,
 			);
 			name = Services;
-			sourceTree = "<group>";
-		};
-		B2D8967D1C936E4D005EF0A4 /* Implementations */ = {
-			isa = PBXGroup;
-			children = (
-				B2D176021C98546900F62B26 /* Parse */,
-				B2D176011C98546000F62B26 /* Udacity */,
-			);
-			name = Implementations;
 			sourceTree = "<group>";
 		};
 		B2D9D6741C9B5D3F0015617D /* Views */ = {
