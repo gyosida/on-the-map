@@ -14,6 +14,7 @@
 		B23DD7FD1C9C547B00A41B90 /* ServicesFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23DD7FC1C9C547B00A41B90 /* ServicesFactory.swift */; };
 		B23DD7FF1C9C572000A41B90 /* UdacityUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23DD7FE1C9C572000A41B90 /* UdacityUserService.swift */; };
 		B23DD8011C9C591D00A41B90 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23DD8001C9C591D00A41B90 /* UserManager.swift */; };
+		B23DD8031C9CAE3100A41B90 /* PostingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23DD8021C9CAE3100A41B90 /* PostingViewController.swift */; };
 		B24FFEC81C922EE400D8EEF3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B24FFEC71C922EE400D8EEF3 /* AppDelegate.swift */; };
 		B24FFECA1C922EE400D8EEF3 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B24FFEC91C922EE400D8EEF3 /* LoginViewController.swift */; };
 		B24FFECD1C922EE400D8EEF3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B24FFECB1C922EE400D8EEF3 /* Main.storyboard */; };
@@ -43,6 +44,7 @@
 		B23DD7FC1C9C547B00A41B90 /* ServicesFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesFactory.swift; sourceTree = "<group>"; };
 		B23DD7FE1C9C572000A41B90 /* UdacityUserService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityUserService.swift; sourceTree = "<group>"; };
 		B23DD8001C9C591D00A41B90 /* UserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
+		B23DD8021C9CAE3100A41B90 /* PostingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostingViewController.swift; sourceTree = "<group>"; };
 		B24FFEC41C922EE400D8EEF3 /* OnTheMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OnTheMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B24FFEC71C922EE400D8EEF3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B24FFEC91C922EE400D8EEF3 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -85,6 +87,7 @@
 				B2D9D66D1C9B2BD60015617D /* HomeTabBarViewController.swift */,
 				B2D9D6721C9B472E0015617D /* BaseViewController.swift */,
 				B2276BDD1C9B5E7900F64AC0 /* LocationsListViewController.swift */,
+				B23DD8021C9CAE3100A41B90 /* PostingViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -303,6 +306,7 @@
 				B23DD7FD1C9C547B00A41B90 /* ServicesFactory.swift in Sources */,
 				B24FFEC81C922EE400D8EEF3 /* AppDelegate.swift in Sources */,
 				B22FC93B1C99B3BC0024BBEE /* LocationsMapViewController.swift in Sources */,
+				B23DD8031C9CAE3100A41B90 /* PostingViewController.swift in Sources */,
 				B2D9D6761C9B5D6C0015617D /* StudentLocationTableViewCell.swift in Sources */,
 				B2D8967C1C936A8A005EF0A4 /* AuthService.swift in Sources */,
 				B2D175F61C97500D00F62B26 /* Constants.swift in Sources */,

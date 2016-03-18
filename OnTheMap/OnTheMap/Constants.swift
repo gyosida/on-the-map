@@ -19,6 +19,7 @@ class Constants {
         static let UDACITY_NEW_SESSION = "/api/session"
         static let UDACITY_USER = "/api/users/{\(URLKeys.USER_ID)}"
         static let PARSE_GET_STUDENT_LOCATIONS = "/1/classes/StudentLocation"
+        static let PARSE_POST_STUDENT_LOCATION = "/1/classes/StudentLocation"
     }
     
     struct ParameterKeys {
@@ -36,6 +37,14 @@ class Constants {
         static let UDACITY = "udacity"
         static let UDACITY_USERNAME = "username"
         static let UDACITY_PASSWORD = "password"
+        
+        static let PARSE_STUDENT_FIRST_NAME = "firstName"
+        static let PARSE_STUDENT_LAST_NAME = "lastName"
+        static let PARSE_STUDENT_LONGITUDE = "longitude"
+        static let PARSE_STUDENT_LATITUDE = "latitude"
+        static let PARSE_STUDENT_MAP_STRING = "mapString"
+        static let PARSE_STUDENT_MEDIA_URL = "mediaURL"
+        static let PARSE_STUDENT_UNIQUE_KEY = "uniqueKey"
     }
     
     struct JSONResponseKeys {

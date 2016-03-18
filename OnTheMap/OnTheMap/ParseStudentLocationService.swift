@@ -46,4 +46,24 @@ class ParseStudentLocationService : StudentLocationsService {
         }
     }
     
+    func saveStudentLocation(studentLocation: StudentLocation, successHandler: () -> Void, failureHandler: (error: String) -> Void) {
+        let bodyParameters: [String: AnyObject!] = [
+            Constants.JSONBodyKeys.PARSE_STUDENT_UNIQUE_KEY : studentLocation.uniqueKey,
+            Constants.JSONBodyKeys.PARSE_STUDENT_FIRST_NAME : studentLocation.firstName,
+            Constants.JSONBodyKeys.PARSE_STUDENT_LAST_NAME : studentLocation.lastName,
+            Constants.JSONBodyKeys.PARSE_STUDENT_LATITUDE : studentLocation.latitude,
+            Constants.JSONBodyKeys.PARSE_STUDENT_LONGITUDE : studentLocation.longitude,
+            Constants.JSONBodyKeys.PARSE_STUDENT_MEDIA_URL : studentLocation.mediaUrl,
+            Constants.JSONBodyKeys.PARSE_STUDENT_MAP_STRING : studentLocation.mapString
+        ]
+        let urlRequest = self.networkingManager.createURLRequest(.POST, resourcePath: Constants.Methods.PARSE_POST_STUDENT_LOCATION, queryParams: nil, bodyParameters: bodyParameters, headers: self.parseHeaders)
+        self.networkingManager.makeHttpRequest(.POST, request: urlRequest) { (result, error) -> Void in
+            guard error == nil else {
+                failureHandler(error: "\(error)")
+                return
+            }
+            successHandler()
+        }
+    }
+    
 }

@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
@@ -238,6 +239,7 @@
                             <barButtonItem image="ic_location" id="d3I-cR-BLT">
                                 <connections>
                                     <action selector="addLocationPressed:" destination="O7T-uq-9b6" id="OjY-XZ-olf"/>
+                                    <segue destination="2na-T6-xuZ" kind="presentation" id="tji-RP-9Fh"/>
                                 </connections>
                             </barButtonItem>
                         </rightBarButtonItems>
@@ -255,6 +257,91 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OWP-X2-cVj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1363" y="529"/>
+        </scene>
+        <!--Posting View Controller-->
+        <scene sceneID="tdf-Zb-8T6">
+            <objects>
+                <viewController id="2na-T6-xuZ" customClass="PostingViewController" customModule="OnTheMap" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="WTR-3w-Swk"/>
+                        <viewControllerLayoutGuide type="bottom" id="AIw-id-wPs"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="yl3-GF-ta6">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gMU-TD-JuE">
+                                <rect key="frame" x="0.0" y="20" width="600" height="44"/>
+                                <items>
+                                    <navigationItem id="RrI-N8-bKo">
+                                        <barButtonItem key="rightBarButtonItem" title="Item" systemItem="cancel" id="iMS-sD-RJI">
+                                            <connections>
+                                                <action selector="cancelPressed:" destination="2na-T6-xuZ" id="JgG-Gi-KT3"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                                <connections>
+                                    <outlet property="delegate" destination="2na-T6-xuZ" id="ugE-TO-PcC"/>
+                                </connections>
+                            </navigationBar>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NXK-mf-r67">
+                                <rect key="frame" x="0.0" y="156" width="600" height="321"/>
+                                <color key="backgroundColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="0.76610991379310345" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="pye-Up-UG0"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="pye-Up-UG0"/>
+                                    </mask>
+                                </variation>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jo2-sE-07K">
+                                <rect key="frame" x="225" y="517" width="151" height="38"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <inset key="contentEdgeInsets" minX="20" minY="10" maxX="20" maxY="10"/>
+                                <state key="normal" title="Find on the Map"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Where are you studying now?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yTd-bZ-RKg">
+                                <rect key="frame" x="155" y="105" width="291" height="27"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="gMU-TD-JuE" secondAttribute="trailing" id="16M-uy-FiZ"/>
+                            <constraint firstItem="gMU-TD-JuE" firstAttribute="leading" secondItem="yl3-GF-ta6" secondAttribute="leading" id="1hc-U9-Cbc"/>
+                            <constraint firstItem="jo2-sE-07K" firstAttribute="centerX" secondItem="yl3-GF-ta6" secondAttribute="centerX" id="8uM-q8-JfP"/>
+                            <constraint firstItem="NXK-mf-r67" firstAttribute="leading" secondItem="yl3-GF-ta6" secondAttribute="leading" id="BLp-Az-oaI"/>
+                            <constraint firstItem="gMU-TD-JuE" firstAttribute="top" secondItem="WTR-3w-Swk" secondAttribute="bottom" id="CEI-BT-1ih"/>
+                            <constraint firstItem="AIw-id-wPs" firstAttribute="top" secondItem="NXK-mf-r67" secondAttribute="bottom" constant="123" id="I1Q-xk-r1c"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="NXK-mf-r67" secondAttribute="trailing" constant="-20" id="Jw4-QE-Kzg"/>
+                            <constraint firstItem="NXK-mf-r67" firstAttribute="top" secondItem="WTR-3w-Swk" secondAttribute="bottom" constant="136" id="L6D-IA-ogC"/>
+                            <constraint firstItem="AIw-id-wPs" firstAttribute="top" secondItem="NXK-mf-r67" secondAttribute="bottom" constant="123" id="TXr-fn-Z8G"/>
+                            <constraint firstItem="gMU-TD-JuE" firstAttribute="top" secondItem="yl3-GF-ta6" secondAttribute="top" id="b5W-ye-tNq"/>
+                            <constraint firstAttribute="trailing" secondItem="NXK-mf-r67" secondAttribute="trailing" id="hbv-Aj-JOI"/>
+                            <constraint firstItem="yTd-bZ-RKg" firstAttribute="top" secondItem="gMU-TD-JuE" secondAttribute="bottom" constant="41" id="iWO-gS-I6m"/>
+                            <constraint firstItem="NXK-mf-r67" firstAttribute="centerY" secondItem="yl3-GF-ta6" secondAttribute="centerY" id="jXD-AU-45C"/>
+                            <constraint firstItem="NXK-mf-r67" firstAttribute="top" secondItem="WTR-3w-Swk" secondAttribute="bottom" constant="136" id="oHG-4P-NxE"/>
+                            <constraint firstItem="yTd-bZ-RKg" firstAttribute="centerX" secondItem="yl3-GF-ta6" secondAttribute="centerX" id="swE-3Q-igZ"/>
+                            <constraint firstItem="AIw-id-wPs" firstAttribute="top" secondItem="jo2-sE-07K" secondAttribute="bottom" constant="45" id="zAk-rB-8KD"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="b5W-ye-tNq"/>
+                                <exclude reference="jXD-AU-45C"/>
+                                <exclude reference="oHG-4P-NxE"/>
+                                <exclude reference="I1Q-xk-r1c"/>
+                            </mask>
+                        </variation>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="96d-Nl-uDe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1363" y="1300"/>
         </scene>
     </scenes>
     <resources>
