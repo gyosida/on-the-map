@@ -16,8 +16,4 @@ class StudentManager {
         self.studentService = studentService
     }
     
-    func getStudentLocations(completionHandler: (success: Bool, studentLocations: [StudentLocation]?, error: String?) -> Void) {
-        self.studentService.getStudentLocations(nil, skip: nil, order: nil, completionHandler: completionHandler)
-    }
-    
 }

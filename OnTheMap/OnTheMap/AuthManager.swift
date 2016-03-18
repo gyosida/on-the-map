@@ -17,13 +17,14 @@ class AuthManager {
         self.authService = authService
     }
     
-    func login(username: String, password: String, completionHandler: (success: Bool, error: String?) -> Void) {
-        authService.login(username, password: password) { (success, session, error) -> Void in
-            if success {
+    func login(username: String, password: String, successHandler: () -> Void, failureHandler: (error: String) -> Void) {
+        authService.login(username, password: password, successHandler: { (session) -> Void in
                 AuthManager.session = session
+                successHandler()
+            }, failureHandler: {(error) -> Void in
+                failureHandler(error: error)
             }
-            completionHandler(success: success, error: error)
-        }
+        )
     }
     
 }

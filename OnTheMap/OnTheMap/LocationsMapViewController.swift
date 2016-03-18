@@ -13,7 +13,8 @@ import MapKit
 class LocationsMapViewController: BaseViewController {
     
     @IBOutlet weak var locationsMapView: MKMapView!
-    let studentManager = StudentManager(studentService: ParseStudentService())
+    
+    let studentLocationsService = ServicesFactory.sharedInstance.getStudentLocationsService()
     var studentLocations:[StudentLocation]!
     
     
@@ -29,12 +30,11 @@ class LocationsMapViewController: BaseViewController {
     
     private func updateStudentLocations() {
         self.activityIndicator.startAnimation()
-        self.studentManager.getStudentLocations { (success, studentLocations, error) -> Void in
-            if success {
+        self.studentLocationsService.getStudentLocations(nil, skip: nil, order: nil, successHandler: { (studentLocations) -> Void in
                 var annotations = [MKPointAnnotation]()
-                self.studentLocations = studentLocations!
+                self.studentLocations = studentLocations
                 self.locationsMapView.removeAnnotations(self.locationsMapView.annotations)
-                for location in studentLocations! {
+                for location in studentLocations {
                     let coordinate = CLLocationCoordinate2D(latitude: location.latitude!, longitude: location.longitude!)
                     let annotation = MKPointAnnotation()
                     var title = ""
@@ -50,11 +50,8 @@ class LocationsMapViewController: BaseViewController {
                     annotations.append(annotation)
                 }
                 self.locationsMapView.addAnnotations(annotations)
-            } else {
-                print("Not able to retrieve studentlocations! :(")
-            }
-            self.activityIndicator.stopAnimation()
-        }
+                self.activityIndicator.stopAnimation()
+            }, failureHandler: self.getDefaultErrorHandler())
     }
     
 }

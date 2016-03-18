@@ -10,9 +10,9 @@ import Foundation
 
 class UdacityAuthService: AuthService {
     
-    private let networkingManager = NetworkingManager(scheme: "https", host: Constants.UDACITY_HOST, reduceDataLength: true)
+    private let networkingManager = NetworkingManager(scheme: Constants.SCHEME, host: Constants.UDACITY_HOST, reduceDataLength: true)
     
-    func login(username: String, password: String, completionWithHandler: (success:Bool, session: Session?, error: String?) -> Void) {
+    func login(username: String, password: String, successHandler: (session: Session?) -> Void, failureHandler: (error: String) -> Void) {
         let body = [
             Constants.JSONBodyKeys.UDACITY: [
                 Constants.JSONBodyKeys.UDACITY_USERNAME:username,
@@ -21,14 +21,14 @@ class UdacityAuthService: AuthService {
         ]
         self.networkingManager.makeHttpRequest(.POST, resourcePath: Constants.Methods.UDACITY_NEW_SESSION, queryParams: nil, bodyParameters: body) { (result, error) -> Void in
             guard error == nil else {
-                completionWithHandler(success: false, session: nil, error: "\(error)")
+                failureHandler(error: "\(error)")
                 return
             }
             let session = Session.fromJSON(result as! [String:AnyObject])
             if session != nil {
-                completionWithHandler(success: true, session: session, error: nil)
+                successHandler(session: session)
             } else {
-                completionWithHandler(success: false, session: nil, error: "Could not parse")
+                failureHandler(error: "Could not parse")
             }
         }
     }

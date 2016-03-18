@@ -9,24 +9,24 @@
 import UIKit
 
 class LoginViewController: BaseViewController {
-
+    
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
-    private let authManager = AuthManager(authService: UdacityAuthService())
-    private let homeSegueIdentifier = "homeSegue"
+    
+    private static let HOME_SEGUE_IDENTIFIER = "homeSegue"
 
     @IBAction func loginPressed(sender: UIButton) {
         let username = usernameTextField.text!
         let password = passwordTextField.text!
+        let authManager = AuthManager(authService: ServicesFactory.sharedInstance.getAuthService())
+        
         self.activityIndicator.startAnimation()
-        authManager.login(username, password: password) { (success, error) -> Void in
-            if success {
-                self.performSegueWithIdentifier(self.homeSegueIdentifier, sender: self)
-            } else {
-                print(error)
-            }
-            self.activityIndicator.stopAnimation()
-        }
+        authManager.login(username, password: password, successHandler: { () -> Void in
+                UserManager.sharedInstance.getUser(AuthManager.session!.key, successHandler: { () -> Void in
+                        self.activityIndicator.stopAnimation()
+                        self.performSegueWithIdentifier(LoginViewController.HOME_SEGUE_IDENTIFIER, sender: self)
+                    }, failureHandler: self.getDefaultErrorHandler())
+            }, failureHandler: self.getDefaultErrorHandler())
     }
 }
 

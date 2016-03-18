@@ -12,7 +12,7 @@ import UIKit
 class LocationsListViewController: BaseViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet var locationsTableView: UITableView!
-    let studentManager = StudentManager(studentService: ParseStudentService())
+    let studentLocationsService = ServicesFactory.sharedInstance.getStudentLocationsService()
     var studentLocations = [StudentLocation]()
     
     override func viewWillAppear(animated: Bool) {
@@ -22,25 +22,24 @@ class LocationsListViewController: BaseViewController, UITableViewDataSource, UI
     
     private func updateStudentLocations() {
         self.activityIndicator.startAnimation()
-        self.studentManager.getStudentLocations { (success, studentLocations, error) -> Void in
-            if success {
-                self.studentLocations = studentLocations!
+        self.studentLocationsService.getStudentLocations(nil, skip: nil, order: nil, successHandler: { (studentLocations) -> Void in
+                self.studentLocations = studentLocations
                 self.locationsTableView.reloadData()
-            } else {
-                print("Could not get the locations :(")
+                self.activityIndicator.stopAnimation()
+            }, failureHandler: {(error: String) -> Void in
+                self.displayError(error)
             }
-            self.activityIndicator.stopAnimation()
-        }
+        )
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let studentTableViewCell = (tableView.dequeueReusableCellWithIdentifier("studentIdentifier", forIndexPath: indexPath) as? StudentLocationTableViewCell)!
-        let student = self.studentLocations[indexPath.item]
+        let studentTableViewCell = (tableView.dequeueReusableCellWithIdentifier("studentLocationIdentifier", forIndexPath: indexPath) as? StudentLocationTableViewCell)!
+        let studentLocation = self.studentLocations[indexPath.item]
         var studentFullName = ""
-        if let firstName = student.firstName {
+        if let firstName = studentLocation.firstName {
             studentFullName += firstName
         }
-        if let lastName = student.lastName {
+        if let lastName = studentLocation.lastName {
             studentFullName += " " + lastName
         }
         studentTableViewCell.studentNameLabel.text = studentFullName

@@ -10,5 +10,5 @@ import Foundation
 
 protocol AuthService {
     
-    func login(username: String, password: String, completionWithHandler:(success:Bool, session: Session?, error: String?) -> Void)
+    func login(username: String, password: String, successHandler:(session: Session?) -> Void, failureHandler: (error: String) -> Void)
 }

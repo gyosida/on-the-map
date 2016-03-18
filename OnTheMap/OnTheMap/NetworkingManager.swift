@@ -74,6 +74,14 @@ class NetworkingManager {
         return request
     }
     
+    func subtituteKeyInMethod(method: String, key: String, value: String) -> String? {
+        if method.rangeOfString("{\(key)}") != nil {
+            return method.stringByReplacingOccurrencesOfString("{\(key)}", withString: value)
+        } else {
+            return nil
+        }
+    }
+    
     private func buildUrl(resourcePath: String, queryParams: [String:AnyObject]?) -> NSURL {
         let urlComponent = NSURLComponents()
         urlComponent.scheme = self.scheme

@@ -8,7 +8,7 @@
 
 import Foundation
 
-class ParseStudentService : StudentService {
+class ParseStudentLocationService : StudentLocationsService {
     
     private let networkingManager = NetworkingManager(host: Constants.PARSE_HOST)
     private let parseHeaders = [
@@ -16,7 +16,7 @@ class ParseStudentService : StudentService {
         Constants.HeaderKeys.X_PARSE_REST_API_KEY : Constants.PARSE_REST_API_KEY
     ]
     
-    func getStudentLocations(limit: String?, skip: String?, order: String?, completionHandler: (success: Bool, studentLocations: [StudentLocation]?, error: String?) -> Void) {
+    func getStudentLocations(limit: String?, skip: String?, order: String?, successHandler: (studentLocations: [StudentLocation]) -> Void, failureHandler: (error: String) -> Void) {
         var optionalQueryParams = [String: AnyObject]()
         if let limit = limit {
             optionalQueryParams[Constants.ParameterKeys.LIMIT] = limit
@@ -30,7 +30,7 @@ class ParseStudentService : StudentService {
         let urlRequest = self.networkingManager.createURLRequest(.GET, resourcePath: Constants.Methods.PARSE_GET_STUDENT_LOCATIONS, queryParams: optionalQueryParams, bodyParameters: nil, headers: self.parseHeaders)
         self.networkingManager.makeHttpRequest(.GET, request: urlRequest) { (result, error) -> Void in
             guard error == nil else {
-                completionHandler(success: false, studentLocations: nil, error: "\(error)")
+                failureHandler(error: "\(error)")
                 return
             }
             if let result = result {
@@ -38,9 +38,9 @@ class ParseStudentService : StudentService {
                 let locationsArray = json[Constants.JSONResponseKeys.RESULTS] as! [[String: AnyObject]]
                 let studentLocations = StudentLocation.fromJSON(locationsArray)
                 if let studentLocations = studentLocations {
-                    completionHandler(success: true, studentLocations: studentLocations, error: nil)
+                    successHandler(studentLocations: studentLocations)
                 } else {
-                    completionHandler(success: false, studentLocations: nil, error: "Could not parse locations")
+                    failureHandler(error: "Could not parse locations")
                 }
             }
         }

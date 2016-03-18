@@ -10,6 +10,6 @@ import Foundation
 
 protocol UserService {
     
-    func getUser(userId: String, completionHandler: () -> Void)
+    func getUser(userId: String, successHandler: (user: User) -> Void, failureHandler: (error: String) -> Void)
     
 }
