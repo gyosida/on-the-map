@@ -28,8 +28,9 @@ class UserManager {
         )
     }
     
-    func getLoggedInUser() -> User? {
-        return self.user
+    // TODO modify this function to be more accurate in case application is restarted
+    func getLoggedInUser() -> User {
+        return self.user!
     }
     
 }

@@ -10,6 +10,7 @@ import Foundation
 
 struct StudentLocation {
     
+    var objectId: String?
     var uniqueKey: String?
     var firstName: String?
     var lastName: String?
@@ -49,6 +50,9 @@ struct StudentLocation {
             return nil
         }
         var student = StudentLocation()
+        if let objectId = json[Constants.JSONResponseKeys.PARSE_STUDENT_OBJECT_ID] as? String {
+            student.objectId = objectId
+        }
         if let uniqueKey = json[Constants.JSONResponseKeys.PARSE_STUDENT_UNIQUE_KEY] as? String {
             student.uniqueKey = uniqueKey
         }

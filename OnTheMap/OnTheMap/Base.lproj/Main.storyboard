@@ -239,7 +239,6 @@
                             <barButtonItem image="ic_location" id="d3I-cR-BLT">
                                 <connections>
                                     <action selector="addLocationPressed:" destination="O7T-uq-9b6" id="OjY-XZ-olf"/>
-                                    <segue destination="2na-T6-xuZ" kind="presentation" id="tji-RP-9Fh"/>
                                 </connections>
                             </barButtonItem>
                         </rightBarButtonItems>
@@ -252,6 +251,7 @@
                     <connections>
                         <segue destination="pB3-yC-pPP" kind="relationship" relationship="viewControllers" id="zle-VK-iuh"/>
                         <segue destination="hwl-Yz-z39" kind="relationship" relationship="viewControllers" id="lun-rq-MyQ"/>
+                        <segue destination="2na-T6-xuZ" kind="presentation" identifier="postingLocationSegue" id="2fv-Is-UB0"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OWP-X2-cVj" userLabel="First Responder" sceneMemberID="firstResponder"/>

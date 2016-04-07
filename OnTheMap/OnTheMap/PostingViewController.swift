@@ -14,6 +14,8 @@ class PostingViewController: BaseViewController, UIBarPositioningDelegate {
     
     @IBOutlet weak var locationTextField: UITextField!
     
+    var studentLocation: StudentLocation?
+    
     
     @IBAction func cancelPressed(sender: UIBarButtonItem) {
         self.dismissViewControllerAnimated(true, completion: nil)
@@ -34,7 +36,10 @@ class PostingViewController: BaseViewController, UIBarPositioningDelegate {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "locationMapSegue" {
             let postingMapVC = segue.destinationViewController as! PostingMapViewController
-            postingMapVC.address = self.locationTextField.text
+            postingMapVC.address = locationTextField.text
+            if studentLocation != nil {
+                postingMapVC.studentLocation = studentLocation
+            }
         }
         super.prepareForSegue(segue, sender: sender)
     }

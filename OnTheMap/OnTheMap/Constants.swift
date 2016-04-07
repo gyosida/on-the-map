@@ -20,6 +20,7 @@ class Constants {
         static let UDACITY_USER = "/api/users/{\(URLKeys.USER_ID)}"
         static let PARSE_GET_STUDENT_LOCATIONS = "/1/classes/StudentLocation"
         static let PARSE_POST_STUDENT_LOCATION = "/1/classes/StudentLocation"
+        static let PARSE_PUT_STUDENT_LOCATION = "/1/classes/StudentLocation/\(URLKeys.USER_ID)"
     }
     
     struct ParameterKeys {
@@ -57,6 +58,7 @@ class Constants {
         static let UDACITY_USER_LAST_NAME = "last_name"
         static let UDACITY_USER = "user"
         
+        static let PARSE_STUDENT_OBJECT_ID = "objectId"
         static let PARSE_STUDENT_FIRST_NAME = "firstName"
         static let PARSE_STUDENT_LAST_NAME = "lastName"
         static let PARSE_STUDENT_LONGITUDE = "longitude"

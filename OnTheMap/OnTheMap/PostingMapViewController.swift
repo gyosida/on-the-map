@@ -18,6 +18,7 @@ class PostingMapViewController: BaseViewController, UIBarPositioningDelegate {
     
     var address: String!
     var coordinate: CLLocationCoordinate2D!
+    var studentLocation: StudentLocation?
     
     func positionForBar(bar: UIBarPositioning) -> UIBarPosition {
         print("topAttached PostingMapViewController")
@@ -30,16 +31,22 @@ class PostingMapViewController: BaseViewController, UIBarPositioningDelegate {
     
     @IBAction func submitPressed(sender: UIButton) {
         let studentService = ServicesFactory.sharedInstance.getStudentLocationsService()
-        let loggedInUser = UserManager.sharedInstance.getLoggedInUser()
-        if let loggedInUser = loggedInUser {
-            let mediaURL = self.shareLinkTextField.text!
-            let studentLocation = StudentLocation(uniqueKey: loggedInUser.key, firstName: loggedInUser.firstName!, lastName: loggedInUser.lastName!, longitude: self.coordinate.longitude, latitude: self.coordinate.latitude, mediaUrl: mediaURL, mapString: self.address)
-            studentService.saveStudentLocation(studentLocation, successHandler: {
-                    print("student location saved")
+        let mediaURL = self.shareLinkTextField.text!
+        activityIndicator.startAnimation()
+        if var existingStudentLocation = studentLocation {
+            existingStudentLocation.mediaUrl = mediaURL
+            existingStudentLocation.latitude = coordinate.latitude
+            existingStudentLocation.longitude = coordinate.longitude
+            existingStudentLocation.mapString =  address
+            studentService.updateStudentLocation(existingStudentLocation, successHandler: { 
                     self.view.window?.rootViewController?.dismissViewControllerAnimated(true, completion: nil)
-                }, failureHandler: { (error) in
-                    print("\(error)")
-            })
+                }, failureHandler: self.getDefaultErrorHandler())
+        } else {
+            let loggedInUser = UserManager.sharedInstance.getLoggedInUser()
+            let studentLocation = StudentLocation(uniqueKey: loggedInUser.key, firstName: loggedInUser.firstName!, lastName: loggedInUser.lastName!, longitude: coordinate.longitude, latitude: coordinate.latitude, mediaUrl: mediaURL, mapString: address)
+            studentService.saveStudentLocation(studentLocation, successHandler: {
+                self.view.window?.rootViewController?.dismissViewControllerAnimated(true, completion: nil)
+                }, failureHandler: self.getDefaultErrorHandler())
         }
     }
     
