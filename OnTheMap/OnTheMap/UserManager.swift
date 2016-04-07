@@ -28,4 +28,8 @@ class UserManager {
         )
     }
     
+    func getLoggedInUser() -> User? {
+        return self.user
+    }
+    
 }

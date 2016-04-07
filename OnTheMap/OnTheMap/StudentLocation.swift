@@ -18,6 +18,18 @@ struct StudentLocation {
     var mediaUrl: String?
     var mapString: String?
     
+    init(){}
+    
+    init(uniqueKey: String, firstName: String, lastName: String, longitude: Double, latitude: Double, mediaUrl: String, mapString: String) {
+        self.uniqueKey = uniqueKey
+        self.firstName = firstName
+        self.lastName = lastName
+        self.longitude = longitude
+        self.latitude = latitude
+        self.mediaUrl = mediaUrl
+        self.mapString = mapString
+    }
+    
     static func fromJSON(json: [[String: AnyObject]]) -> [StudentLocation]? {
         guard !json.isEmpty else {
             return nil
