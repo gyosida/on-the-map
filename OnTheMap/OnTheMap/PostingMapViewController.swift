@@ -18,6 +18,8 @@ class PostingMapViewController: BaseViewController, UIBarPositioningDelegate {
     
     var address: String!
     var coordinate: CLLocationCoordinate2D!
+    var studentLocation: StudentLocation?
+    var modalNavigationDelegate: ModalNavigationDelegate?
     
     func positionForBar(bar: UIBarPositioning) -> UIBarPosition {
         print("topAttached PostingMapViewController")
@@ -25,32 +27,42 @@ class PostingMapViewController: BaseViewController, UIBarPositioningDelegate {
     }
     
     @IBAction func cancelPressed(sender: UIBarButtonItem) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+        modalNavigationDelegate?.onNavigationCompleted()
     }
     
     @IBAction func submitPressed(sender: UIButton) {
         let studentService = ServicesFactory.sharedInstance.getStudentLocationsService()
-        let loggedInUser = UserManager.sharedInstance.getLoggedInUser()
-        if let loggedInUser = loggedInUser {
-            let mediaURL = self.shareLinkTextField.text!
-            let studentLocation = StudentLocation(uniqueKey: loggedInUser.key, firstName: loggedInUser.firstName!, lastName: loggedInUser.lastName!, longitude: self.coordinate.longitude, latitude: self.coordinate.latitude, mediaUrl: mediaURL, mapString: self.address)
+        let mediaURL = self.shareLinkTextField.text!
+        activityIndicator.startAnimation()
+        if var existingStudentLocation = studentLocation {
+            existingStudentLocation.mediaUrl = mediaURL
+            existingStudentLocation.latitude = coordinate.latitude
+            existingStudentLocation.longitude = coordinate.longitude
+            existingStudentLocation.mapString =  address
+            studentService.updateStudentLocation(existingStudentLocation, successHandler: {
+                    self.activityIndicator.stopAnimation()
+                    self.modalNavigationDelegate?.onNavigationCompleted()
+                }, failureHandler: self.getDefaultErrorHandler())
+        } else {
+            let loggedInUser = UserManager.sharedInstance.getLoggedInUser()
+            let studentLocation = StudentLocation(uniqueKey: loggedInUser.key, firstName: loggedInUser.firstName!, lastName: loggedInUser.lastName!, longitude: coordinate.longitude, latitude: coordinate.latitude, mediaUrl: mediaURL, mapString: address)
             studentService.saveStudentLocation(studentLocation, successHandler: {
-                    print("student location saved")
-                    self.view.window?.rootViewController?.dismissViewControllerAnimated(true, completion: nil)
-                }, failureHandler: { (error) in
-                    print("\(error)")
-            })
+                    self.activityIndicator.stopAnimation()
+                    self.modalNavigationDelegate?.onNavigationCompleted()
+                }, failureHandler: self.getDefaultErrorHandler())
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.activityIndicator.startAnimation()
+        print("Going to geocode \(address)")
         CLGeocoder().geocodeAddressString(address) { (placemarks, error) in
+            self.activityIndicator.stopAnimation()
             guard error == nil else {
+                self.displayError("Unable to process the address, please try again")
                 return
             }
-            self.activityIndicator.stopAnimation()
             if let firstPlacemark = placemarks?.first {
                 self.coordinate = firstPlacemark.location?.coordinate
                 let annotation = MKPointAnnotation()

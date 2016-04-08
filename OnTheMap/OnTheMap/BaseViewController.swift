@@ -18,9 +18,9 @@ class BaseViewController: UIViewController {
         self.activityIndicator = SpinnerIndicator(parentView: self.view)        
     }
     
-    func displayError(error: String) {
+    func displayError(message: String) {
         self.activityIndicator.stopAnimation()
-        print(error)
+        self.presentViewController(Utils.createErrorAlert(message), animated: true, completion: nil)
     }
     
     func getDefaultErrorHandler() -> (error: String) -> Void {

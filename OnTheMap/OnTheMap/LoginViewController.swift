@@ -22,7 +22,7 @@ class LoginViewController: BaseViewController {
         
         self.activityIndicator.startAnimation()
         authManager.login(username, password: password, successHandler: { () -> Void in
-                UserManager.sharedInstance.getUser(AuthManager.session!.key, successHandler: { () -> Void in
+                UserManager.sharedInstance.getUser(AuthManager.session!.key, successHandler: {  () -> Void in
                         self.activityIndicator.stopAnimation()
                         self.performSegueWithIdentifier(LoginViewController.HOME_SEGUE_IDENTIFIER, sender: self)
                     }, failureHandler: self.getDefaultErrorHandler())

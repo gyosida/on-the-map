@@ -26,10 +26,7 @@ class LocationsListViewController: BaseViewController, UITableViewDataSource, UI
                 self.studentLocations = studentLocations
                 self.locationsTableView.reloadData()
                 self.activityIndicator.stopAnimation()
-            }, failureHandler: {(error: String) -> Void in
-                self.displayError(error)
-            }
-        )
+            }, failureHandler: self.getDefaultErrorHandler())
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

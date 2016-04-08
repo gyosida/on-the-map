@@ -31,10 +31,10 @@ class NetworkingManager {
     
     func makeHttpRequest(httpMethod: HTTPMethod, resourcePath: String, queryParams: [String:AnyObject]?, bodyParameters:[String: AnyObject]?, completionHandler: (result: AnyObject?, error: NSError?) -> Void) {
         let urlRequest = self.createURLRequest(httpMethod, resourcePath: resourcePath, queryParams: queryParams, bodyParameters: bodyParameters, headers: nil)
-        self.makeHttpRequest(httpMethod, request: urlRequest, completionHandler: completionHandler)
+        self.makeHttpRequest(urlRequest, completionHandler: completionHandler)
     }
     
-    func makeHttpRequest(httpMethod: HTTPMethod, request: NSMutableURLRequest, completionHandler: (result: AnyObject?, error: NSError?) -> Void) {
+    func makeHttpRequest(request: NSMutableURLRequest, completionHandler: (result: AnyObject?, error: NSError?) -> Void) {
         let task = self.sharedSession.dataTaskWithRequest(request) { (data, response, error) -> Void in
             if let error = self.responseWithErrors(response, error: error) {
                 completionHandler(result: nil, error: error)
@@ -137,4 +137,5 @@ class NetworkingManager {
 enum HTTPMethod : String {
     case GET
     case POST
+    case PUT
 }

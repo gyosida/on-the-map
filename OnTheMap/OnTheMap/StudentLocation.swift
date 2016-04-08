@@ -10,6 +10,7 @@ import Foundation
 
 struct StudentLocation {
     
+    var objectId: String?
     var uniqueKey: String?
     var firstName: String?
     var lastName: String?
@@ -49,6 +50,9 @@ struct StudentLocation {
             return nil
         }
         var student = StudentLocation()
+        if let objectId = json[Constants.JSONResponseKeys.PARSE_STUDENT_OBJECT_ID] as? String {
+            student.objectId = objectId
+        }
         if let uniqueKey = json[Constants.JSONResponseKeys.PARSE_STUDENT_UNIQUE_KEY] as? String {
             student.uniqueKey = uniqueKey
         }
@@ -68,6 +72,32 @@ struct StudentLocation {
             student.mapString = mapString
         }
         return student
+    }
+    
+    static func studentLocationToDictionary(studentLocation: StudentLocation) -> [String: AnyObject] {
+        var dictionary = [String: AnyObject]()
+        if let uniqueKey = studentLocation.uniqueKey {
+            dictionary[Constants.JSONBodyKeys.PARSE_STUDENT_UNIQUE_KEY] = uniqueKey
+        }
+        if let firstName = studentLocation.firstName {
+            dictionary[Constants.JSONBodyKeys.PARSE_STUDENT_FIRST_NAME] = firstName
+        }
+        if let lastName = studentLocation.lastName {
+            dictionary[Constants.JSONBodyKeys.PARSE_STUDENT_LAST_NAME] = lastName
+        }
+        if let latitude = studentLocation.latitude {
+            dictionary[Constants.JSONBodyKeys.PARSE_STUDENT_LATITUDE] = latitude
+        }
+        if let longitude = studentLocation.longitude {
+            dictionary[Constants.JSONBodyKeys.PARSE_STUDENT_LONGITUDE] = longitude
+        }
+        if let mediaURL = studentLocation.mediaUrl {
+            dictionary[Constants.JSONBodyKeys.PARSE_STUDENT_MEDIA_URL] = mediaURL
+        }
+        if let mapString = studentLocation.mapString {
+            dictionary[Constants.JSONBodyKeys.PARSE_STUDENT_MAP_STRING] = mapString
+        }
+        return dictionary
     }
     
 }

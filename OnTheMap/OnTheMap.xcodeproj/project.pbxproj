@@ -21,6 +21,9 @@
 		B24FFECF1C922EE400D8EEF3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B24FFECE1C922EE400D8EEF3 /* Assets.xcassets */; };
 		B24FFED21C922EE400D8EEF3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B24FFED01C922EE400D8EEF3 /* LaunchScreen.storyboard */; };
 		B25AC17E1CB576C700F4D2F4 /* PostingMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B25AC17D1CB576C700F4D2F4 /* PostingMapViewController.swift */; };
+		B25AC1801CB6B06D00F4D2F4 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B25AC17F1CB6B06D00F4D2F4 /* Utils.swift */; };
+		B25AC1821CB6B09100F4D2F4 /* AlertUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B25AC1811CB6B09100F4D2F4 /* AlertUtils.swift */; };
+		B25AC1841CB6EBD600F4D2F4 /* StudentLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B25AC1831CB6EBD600F4D2F4 /* StudentLocationManager.swift */; };
 		B2D175F61C97500D00F62B26 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D175F51C97500D00F62B26 /* Constants.swift */; };
 		B2D175F81C9752D900F62B26 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D175F71C9752D900F62B26 /* Session.swift */; };
 		B2D175FA1C97596B00F62B26 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D175F91C97596B00F62B26 /* AuthManager.swift */; };
@@ -54,6 +57,9 @@
 		B24FFED11C922EE400D8EEF3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B24FFED31C922EE400D8EEF3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B25AC17D1CB576C700F4D2F4 /* PostingMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostingMapViewController.swift; sourceTree = "<group>"; };
+		B25AC17F1CB6B06D00F4D2F4 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		B25AC1811CB6B09100F4D2F4 /* AlertUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertUtils.swift; sourceTree = "<group>"; };
+		B25AC1831CB6EBD600F4D2F4 /* StudentLocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentLocationManager.swift; sourceTree = "<group>"; };
 		B2D175F51C97500D00F62B26 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		B2D175F71C9752D900F62B26 /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		B2D175F91C97596B00F62B26 /* AuthManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
@@ -100,6 +106,8 @@
 			children = (
 				B22FC93C1C99C40C0024BBEE /* GCDBlackBox.swift */,
 				B2D175F51C97500D00F62B26 /* Constants.swift */,
+				B25AC17F1CB6B06D00F4D2F4 /* Utils.swift */,
+				B25AC1811CB6B09100F4D2F4 /* AlertUtils.swift */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -188,6 +196,7 @@
 				B2D896771C931E6A005EF0A4 /* NetworkingManager.swift */,
 				B2D175F91C97596B00F62B26 /* AuthManager.swift */,
 				B23DD8001C9C591D00A41B90 /* UserManager.swift */,
+				B25AC1831CB6EBD600F4D2F4 /* StudentLocationManager.swift */,
 			);
 			name = Managers;
 			sourceTree = "<group>";
@@ -297,6 +306,9 @@
 				B2D175FA1C97596B00F62B26 /* AuthManager.swift in Sources */,
 				B2D175FC1C9763DB00F62B26 /* UserService.swift in Sources */,
 				B2D9D6711C9B42DF0015617D /* SpinnerIndicator.swift in Sources */,
+				B25AC1821CB6B09100F4D2F4 /* AlertUtils.swift in Sources */,
+				B25AC1841CB6EBD600F4D2F4 /* StudentLocationManager.swift in Sources */,
+				B25AC1801CB6B06D00F4D2F4 /* Utils.swift in Sources */,
 				B2D9D6731C9B472E0015617D /* BaseViewController.swift in Sources */,
 				B22FC93D1C99C40C0024BBEE /* GCDBlackBox.swift in Sources */,
 				B23DD8011C9C591D00A41B90 /* UserManager.swift in Sources */,
