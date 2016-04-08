@@ -15,6 +15,7 @@ class PostingViewController: BaseViewController, UIBarPositioningDelegate {
     @IBOutlet weak var locationTextField: UITextField!
     
     var studentLocation: StudentLocation?
+    var modalNavigationDelegate: ModalNavigationDelegate?
     
     
     @IBAction func cancelPressed(sender: UIBarButtonItem) {
@@ -39,6 +40,9 @@ class PostingViewController: BaseViewController, UIBarPositioningDelegate {
             postingMapVC.address = locationTextField.text
             if studentLocation != nil {
                 postingMapVC.studentLocation = studentLocation
+            }
+            if modalNavigationDelegate != nil {
+                postingMapVC.modalNavigationDelegate = modalNavigationDelegate
             }
         }
         super.prepareForSegue(segue, sender: sender)

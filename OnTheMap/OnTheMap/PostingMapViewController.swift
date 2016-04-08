@@ -19,6 +19,7 @@ class PostingMapViewController: BaseViewController, UIBarPositioningDelegate {
     var address: String!
     var coordinate: CLLocationCoordinate2D!
     var studentLocation: StudentLocation?
+    var modalNavigationDelegate: ModalNavigationDelegate?
     
     func positionForBar(bar: UIBarPositioning) -> UIBarPosition {
         print("topAttached PostingMapViewController")
@@ -26,7 +27,7 @@ class PostingMapViewController: BaseViewController, UIBarPositioningDelegate {
     }
     
     @IBAction func cancelPressed(sender: UIBarButtonItem) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+        modalNavigationDelegate?.onNavigationCompleted()
     }
     
     @IBAction func submitPressed(sender: UIButton) {
@@ -40,14 +41,14 @@ class PostingMapViewController: BaseViewController, UIBarPositioningDelegate {
             existingStudentLocation.mapString =  address
             studentService.updateStudentLocation(existingStudentLocation, successHandler: {
                     self.activityIndicator.stopAnimation()
-                    self.view.window?.rootViewController?.dismissViewControllerAnimated(true, completion: nil)
+                    self.modalNavigationDelegate?.onNavigationCompleted()
                 }, failureHandler: self.getDefaultErrorHandler())
         } else {
             let loggedInUser = UserManager.sharedInstance.getLoggedInUser()
             let studentLocation = StudentLocation(uniqueKey: loggedInUser.key, firstName: loggedInUser.firstName!, lastName: loggedInUser.lastName!, longitude: coordinate.longitude, latitude: coordinate.latitude, mediaUrl: mediaURL, mapString: address)
             studentService.saveStudentLocation(studentLocation, successHandler: {
                     self.activityIndicator.stopAnimation()
-                    self.view.window?.rootViewController?.dismissViewControllerAnimated(true, completion: nil)
+                    self.modalNavigationDelegate?.onNavigationCompleted()
                 }, failureHandler: self.getDefaultErrorHandler())
         }
     }

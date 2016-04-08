@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class HomeTabBarViewController: UITabBarController {
+class HomeTabBarViewController: UITabBarController, ModalNavigationDelegate {
     
     static let POSTING_SEGUE = "postingLocationSegue"
     
@@ -25,8 +25,13 @@ class HomeTabBarViewController: UITabBarController {
         if segue.identifier == HomeTabBarViewController.POSTING_SEGUE {
             let postingVC = segue.destinationViewController as! PostingViewController
             postingVC.studentLocation = existingStudentLocation
+            postingVC.modalNavigationDelegate = self
         }
         super.prepareForSegue(segue, sender: sender)
+    }
+    
+    func onNavigationCompleted() {
+        dismissViewControllerAnimated(true, completion: nil)
     }
     
     @IBAction func addLocationPressed(sender: AnyObject) {
@@ -69,6 +74,12 @@ class HomeTabBarViewController: UITabBarController {
             delegate.refreshLocations()
         }
     }
+    
+}
+
+protocol ModalNavigationDelegate {
+    
+    func onNavigationCompleted()
     
 }
 
