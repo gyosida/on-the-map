@@ -47,6 +47,15 @@ class LocationsListViewController: BaseViewController, UITableViewDataSource, UI
         return self.studentLocations.count
     }
     
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let studentLocation = studentLocations[indexPath.item]
+        if let mediaURL = studentLocation.mediaUrl {
+            UIApplication.sharedApplication().openURL(NSURL(string: mediaURL)!)
+        } else {
+            displayError("Student does not have a link attached")
+        }
+    }
+    
 }
 
 extension LocationsListViewController: LocationTabDelegate {
