@@ -74,4 +74,30 @@ struct StudentLocation {
         return student
     }
     
+    static func studentLocationToDictionary(studentLocation: StudentLocation) -> [String: AnyObject] {
+        var dictionary = [String: AnyObject]()
+        if let uniqueKey = studentLocation.uniqueKey {
+            dictionary[Constants.JSONBodyKeys.PARSE_STUDENT_UNIQUE_KEY] = uniqueKey
+        }
+        if let firstName = studentLocation.firstName {
+            dictionary[Constants.JSONBodyKeys.PARSE_STUDENT_FIRST_NAME] = firstName
+        }
+        if let lastName = studentLocation.lastName {
+            dictionary[Constants.JSONBodyKeys.PARSE_STUDENT_LAST_NAME] = lastName
+        }
+        if let latitude = studentLocation.latitude {
+            dictionary[Constants.JSONBodyKeys.PARSE_STUDENT_LATITUDE] = latitude
+        }
+        if let longitude = studentLocation.longitude {
+            dictionary[Constants.JSONBodyKeys.PARSE_STUDENT_LONGITUDE] = longitude
+        }
+        if let mediaURL = studentLocation.mediaUrl {
+            dictionary[Constants.JSONBodyKeys.PARSE_STUDENT_MEDIA_URL] = mediaURL
+        }
+        if let mapString = studentLocation.mapString {
+            dictionary[Constants.JSONBodyKeys.PARSE_STUDENT_MAP_STRING] = mapString
+        }
+        return dictionary
+    }
+    
 }

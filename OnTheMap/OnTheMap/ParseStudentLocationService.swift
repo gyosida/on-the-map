@@ -31,7 +31,7 @@ class ParseStudentLocationService : StudentLocationsService {
     }
     
     func getStudentLocations(studentKey: String, successHandler: (studentLocations: [StudentLocation]) -> Void, failureHandler: (error: String) -> Void) {
-        let params: [String: AnyObject] = [Constants.JSONBodyKeys.PARSE_STUDENT_UNIQUE_KEY : studentKey]
+        let params: [String: AnyObject] = [Constants.ParameterKeys.WHERE : "{\"\(Constants.JSONBodyKeys.PARSE_STUDENT_UNIQUE_KEY)\":\"\(studentKey)\"}"]
         getStudentLocationsInternal(params, successHandler: successHandler, failureHandler: failureHandler)
     }
     
@@ -56,7 +56,7 @@ class ParseStudentLocationService : StudentLocationsService {
     }
     
     func saveStudentLocation(studentLocation: StudentLocation, successHandler: () -> Void, failureHandler: (error: String) -> Void) {
-        let bodyParameters = studentLocationToDictionary(studentLocation)
+        let bodyParameters = StudentLocation.studentLocationToDictionary(studentLocation)
         let urlRequest = self.networkingManager.createURLRequest(.POST, resourcePath: Constants.Methods.PARSE_POST_STUDENT_LOCATION, queryParams: nil, bodyParameters: bodyParameters, headers: parseHeaders)
         self.networkingManager.makeHttpRequest(urlRequest) { (result, error) -> Void in
             guard error == nil else {
@@ -68,7 +68,7 @@ class ParseStudentLocationService : StudentLocationsService {
     }
     
     func updateStudentLocation(studentLocation: StudentLocation, successHandler: () -> Void, failureHandler: (error: String) -> Void) {
-        let bodyParameters = studentLocationToDictionary(studentLocation)
+        let bodyParameters = StudentLocation.studentLocationToDictionary(studentLocation)
         let resourcePath = networkingManager.subtituteKeyInMethod(Constants.Methods.PARSE_PUT_STUDENT_LOCATION, key: Constants.URLKeys.USER_ID, value: studentLocation.objectId!)!
         let urlRequest = networkingManager.createURLRequest(.PUT, resourcePath: resourcePath, queryParams: nil, bodyParameters: bodyParameters, headers: parseHeaders)
         networkingManager.makeHttpRequest(urlRequest) { (result, error) in
@@ -80,17 +80,6 @@ class ParseStudentLocationService : StudentLocationsService {
         }
     }
     
-    private func studentLocationToDictionary(studentLocation: StudentLocation) -> [String: AnyObject] {
-        let bodyParameters: [String: AnyObject!] = [
-            Constants.JSONBodyKeys.PARSE_STUDENT_UNIQUE_KEY : studentLocation.uniqueKey!,
-            Constants.JSONBodyKeys.PARSE_STUDENT_FIRST_NAME : studentLocation.firstName,
-            Constants.JSONBodyKeys.PARSE_STUDENT_LAST_NAME : studentLocation.lastName,
-            Constants.JSONBodyKeys.PARSE_STUDENT_LATITUDE : studentLocation.latitude,
-            Constants.JSONBodyKeys.PARSE_STUDENT_LONGITUDE : studentLocation.longitude,
-            Constants.JSONBodyKeys.PARSE_STUDENT_MEDIA_URL : studentLocation.mediaUrl,
-            Constants.JSONBodyKeys.PARSE_STUDENT_MAP_STRING : studentLocation.mapString
-        ]
-        return bodyParameters
-    }
+    
     
 }

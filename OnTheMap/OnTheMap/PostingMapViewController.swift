@@ -38,14 +38,16 @@ class PostingMapViewController: BaseViewController, UIBarPositioningDelegate {
             existingStudentLocation.latitude = coordinate.latitude
             existingStudentLocation.longitude = coordinate.longitude
             existingStudentLocation.mapString =  address
-            studentService.updateStudentLocation(existingStudentLocation, successHandler: { 
+            studentService.updateStudentLocation(existingStudentLocation, successHandler: {
+                    self.activityIndicator.stopAnimation()
                     self.view.window?.rootViewController?.dismissViewControllerAnimated(true, completion: nil)
                 }, failureHandler: self.getDefaultErrorHandler())
         } else {
             let loggedInUser = UserManager.sharedInstance.getLoggedInUser()
             let studentLocation = StudentLocation(uniqueKey: loggedInUser.key, firstName: loggedInUser.firstName!, lastName: loggedInUser.lastName!, longitude: coordinate.longitude, latitude: coordinate.latitude, mediaUrl: mediaURL, mapString: address)
             studentService.saveStudentLocation(studentLocation, successHandler: {
-                self.view.window?.rootViewController?.dismissViewControllerAnimated(true, completion: nil)
+                    self.activityIndicator.stopAnimation()
+                    self.view.window?.rootViewController?.dismissViewControllerAnimated(true, completion: nil)
                 }, failureHandler: self.getDefaultErrorHandler())
         }
     }
@@ -53,11 +55,13 @@ class PostingMapViewController: BaseViewController, UIBarPositioningDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.activityIndicator.startAnimation()
+        print("Going to geocode \(address)")
         CLGeocoder().geocodeAddressString(address) { (placemarks, error) in
+            self.activityIndicator.stopAnimation()
             guard error == nil else {
+                self.displayError("Unable to process the address, please try again")
                 return
             }
-            self.activityIndicator.stopAnimation()
             if let firstPlacemark = placemarks?.first {
                 self.coordinate = firstPlacemark.location?.coordinate
                 let annotation = MKPointAnnotation()

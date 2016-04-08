@@ -20,13 +20,14 @@ class Constants {
         static let UDACITY_USER = "/api/users/{\(URLKeys.USER_ID)}"
         static let PARSE_GET_STUDENT_LOCATIONS = "/1/classes/StudentLocation"
         static let PARSE_POST_STUDENT_LOCATION = "/1/classes/StudentLocation"
-        static let PARSE_PUT_STUDENT_LOCATION = "/1/classes/StudentLocation/\(URLKeys.USER_ID)"
+        static let PARSE_PUT_STUDENT_LOCATION = "/1/classes/StudentLocation/{\(URLKeys.USER_ID)}"
     }
     
     struct ParameterKeys {
         static let LIMIT = "limit"
         static let SKIP = "skip"
         static let ORDER = "order"
+        static let WHERE = "where"
     }
     
     struct HeaderKeys {
