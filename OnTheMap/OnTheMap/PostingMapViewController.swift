@@ -55,6 +55,7 @@ class PostingMapViewController: BaseViewController, UIBarPositioningDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        initViews()
         self.activityIndicator.startAnimation()
         print("Going to geocode \(address)")
         CLGeocoder().geocodeAddressString(address) { (placemarks, error) in
@@ -74,6 +75,10 @@ class PostingMapViewController: BaseViewController, UIBarPositioningDelegate {
             }
         }
 
+    }
+    
+    private func initViews() {
+        shareLinkTextField.attributedPlaceholder = NSAttributedString(string: "Enter a link to share here", attributes: [NSForegroundColorAttributeName: UIColor(hex: 0xE6E6E6)])
     }
     
 }

@@ -17,16 +17,13 @@ class PostingViewController: BaseViewController, UIBarPositioningDelegate {
     var studentLocation: StudentLocation?
     var modalNavigationDelegate: ModalNavigationDelegate?
     
-    
-    @IBAction func cancelPressed(sender: UIBarButtonItem) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        initViews()
     }
     
-    @IBAction func findLocationPressed(sender: UIButton) {
-        guard let location = self.locationTextField.text where !location.isEmpty else {
-            return
-        }
-        self.performSegueWithIdentifier("locationMapSegue", sender: self)
+    func initViews() {
+        locationTextField.attributedPlaceholder = NSAttributedString(string: "Enter your location here", attributes: [NSForegroundColorAttributeName: UIColor(hex: 0xE6E6E6)])
     }
     
     func positionForBar(bar: UIBarPositioning) -> UIBarPosition {
@@ -46,6 +43,17 @@ class PostingViewController: BaseViewController, UIBarPositioningDelegate {
             }
         }
         super.prepareForSegue(segue, sender: sender)
+    }
+    
+    @IBAction func cancelPressed(sender: UIBarButtonItem) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    @IBAction func findLocationPressed(sender: UIButton) {
+        guard let location = self.locationTextField.text where !location.isEmpty else {
+            return
+        }
+        self.performSegueWithIdentifier("locationMapSegue", sender: self)
     }
     
 }
